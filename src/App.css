@@ -1,0 +1,10 @@
+.App {
+  min-height: 500px;
+  width: 410px;
+  background: #633636;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 28rem;
+}
