@@ -7,79 +7,57 @@ import TodoList from "./components/TodoList/index";
 class App extends Component {
   constructor() {
     super();
-    this.todos = [
-      {
-        text: "",
-        id: uuidv4(),
-        status: false,
-      },
-    ];
+    this.state = {
+      todos: [],
+    };
   }
-  onChangeHandler = (e) => {
-    if (e.target.value.trim()) {
-      this.setState({
-        text: e.target.value,
-      });
-    }
-  };
 
-  onClickHandler = (e) => {
-    e.preventDefault();
-    if (this.todos) {
-      this.onSubmitTodo(e.target.value);
-      this.setState((todos) => {
-        return {
-          text: " ",
-        };
-      });
-    }
-  };
-
-  onSubmitTodo = (item) => {
-    this.setState({
-      text: item,
-    });
+  onSubmitTodo = (text) => {
+    const todo = {
+      text,
+      id: uuidv4(),
+      status: false,
+    };
+    this.setState((prevState) => ({
+      todos: prevState.todos.concat(todo),
+    }));
   };
 
   onDeleteTodo = (id) => {
-    const filteredTodo = this.state.filter((todo) => this.todos.id !== todo.id);
-    this.setState([...filteredTodo]);
+    const filteredTodo = this.state.todos.filter((todo) => todo.id !== id);
+    this.setState({ todos: filteredTodo });
   };
 
   onDoneTodo = (id) => {
-    const doneTodos = this.todos.map((todo) => {
-      if (this.todos.id === id)
-        return {
-          ...this.todos,
-          status: !this.todos.status,
-        };
-      return this.todos;
+    const doneTodos = this.state.todos.map((todo) => {
+      if (todo.id === id) todo.status = !todo.status;
+      return todo;
     });
-
-    this.setState({ doneTodos });
+    this.setState({ todos: [].concat(doneTodos) });
+    console.log(this.state);
   };
 
   onUpdateTodo = (id, e) => {
     console.log(e);
-    const updated = this.todos.map((todo) => {
-      if (this.state.id === id)
+    const updated = this.state.todos.map((todo) => {
+      if (todo.id === id)
         return {
-          ...this.todos,
+          ...this.state,
           text: e,
         };
-      return todo;
+      return this.state;
     });
-    this.setState({ updated });
+    this.setState({ todos: [].concat(updated) });
   };
   render() {
     return (
       <div className='App'>
         <div>
           <div>
-            <TodoForm onClick={this.onClickHandler} onChange={this.onChangeHandler} />
+            <TodoForm onSubmit={this.onSubmitTodo} />
           </div>
           <TodoList
-            todos={this.state}
+            todos={this.state.todos}
             onDelete={this.onDeleteTodo}
             onDone={this.onDoneTodo}
             onUpdate={this.onUpdateTodo}
