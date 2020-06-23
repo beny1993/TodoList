@@ -5,29 +5,31 @@ export default class TodoForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: "",
+      todo: "",
     };
   }
   onChangeHandler = (e) => {
     this.setState({
-      todos: e.target.value,
+      todo: e.target.value,
     });
   };
 
   onClickHandler = (e) => {
     e.preventDefault();
-    if (this.state.todos.trim()) {
+    if (this.state.todo.trim()) {
       const { onSubmit } = this.props;
-      onSubmit(this.state.todos);
+      onSubmit(this.state.todo);
       this.setState({
-        text: "",
+        todo: "",
       });
     }
   };
   render() {
     return (
-      <div className='TodoForm'>
-        <P2>Todo List</P2>
+      <>
+        <div style={{ margin: "0rem 0rem 0rem 2rem" }}>
+          <P2>Todo List</P2>
+        </div>
         <div>
           <StyledInput
             value={this.state.todo}
@@ -35,9 +37,11 @@ export default class TodoForm extends Component {
             onChange={this.onChangeHandler}
             placeholder='Enter Your Text'
           />
-          <ButtonStyle onClick={this.onClickHandler}>Add</ButtonStyle>
+          <ButtonStyle onClick={this.onClickHandler}>
+            <i class='fas fa-plus'></i>
+          </ButtonStyle>
         </div>
-      </div>
+      </>
     );
   }
 }

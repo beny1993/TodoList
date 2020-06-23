@@ -17,12 +17,11 @@ export const StyledInput = styled.input`
 `;
 
 export const ButtonStyle = styled.button`
-  margin-left: 2rem;
-  padding: 0.6rem 2rem;
-  background: #53f353;
-  border-radius: 15px;
+  margin-left: -5rem;
+  padding: 0.7rem 2rem;
+  background: #e1a5ff;
+  border-radius: 51px;
   cursor: pointer;
-
   &:active,
   &:focus {
     outline: 0;
@@ -35,10 +34,11 @@ export const ButtonStyle = styled.button`
 export const P2 = styled.p`
   display: flex;
   justify-content: center;
-  margin: -7rem 1rem -5rem 1rem;
+  margin: -9rem 0rem -5rem -2rem;
   font-size: 3rem;
-  background: #060202;
+  background: #ec1010;
   color: white;
   border-radius: 6rem;
   border: solid red;
+  box-shadow: 8px 6px 9px 3px #fb8876;
 `;

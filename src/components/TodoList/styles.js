@@ -9,9 +9,9 @@ export const StyledList = styled.ul`
 export const StyledListItem = styled.li`
   border: 1px solid #3636ea;
   background: #c142c1;
-  padding: 1rem 1rem 1rem 2rem;
-
-  & input.done {
+  padding: 1rem 1rem 1rem 1rem;
+  border-radius: 16rem;
+  margin-bottom: 1rem;
     text-decoration: line-through;
     color: black;
   }

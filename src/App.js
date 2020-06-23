@@ -13,16 +13,16 @@ class App extends Component {
   }
 
   onSubmitTodo = (text) => {
+    console.log(text);
     const todo = {
       text,
       id: uuidv4(),
       status: false,
     };
-    this.setState((prevState) => ({
-      todos: prevState.todos.concat(todo),
-    }));
+    this.setState({
+      todos: [...this.state.todos, todo],
+    });
   };
-
   onDeleteTodo = (id) => {
     const filteredTodo = this.state.todos.filter((todo) => todo.id !== id);
     this.setState({ todos: filteredTodo });
@@ -33,21 +33,22 @@ class App extends Component {
       if (todo.id === id) todo.status = !todo.status;
       return todo;
     });
-    this.setState({ todos: [].concat(doneTodos) });
+    this.setState({ todos: [...this.state.todos, doneTodos] });
     console.log(this.state);
   };
 
   onUpdateTodo = (id, e) => {
-    console.log(e);
-    const updated = this.state.todos.map((todo) => {
-      if (todo.id === id)
-        return {
-          ...this.state,
-          text: e,
-        };
-      return this.state;
+    const items = [...this.state.todos];
+    items.map((item) => {
+      if (item.id === id) {
+        item.text = e;
+      }
+      return items;
     });
-    this.setState({ todos: [].concat(updated) });
+    this.setState({
+      todos: items,
+    });
+    console.log(this.state);
   };
   render() {
     return (
