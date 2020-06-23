@@ -38,7 +38,7 @@ export default class TodoForm extends Component {
             placeholder='Enter Your Text'
           />
           <ButtonStyle onClick={this.onClickHandler}>
-            <i class='fas fa-plus'></i>
+            <i className='fas fa-plus'></i>
           </ButtonStyle>
         </div>
       </>

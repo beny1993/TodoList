@@ -29,12 +29,14 @@ class App extends Component {
   };
 
   onDoneTodo = (id) => {
-    const doneTodos = this.state.todos.map((todo) => {
-      if (todo.id === id) todo.status = !todo.status;
+    const doneTodos = [...this.state.todos];
+    doneTodos.map((todo) => {
+      if (todo.id === id) {
+        todo.status = !todo.status;
+      }
       return todo;
     });
-    this.setState({ todos: [...this.state.todos, doneTodos] });
-    console.log(this.state);
+    this.setState({ todos: doneTodos });
   };
 
   onUpdateTodo = (id, e) => {

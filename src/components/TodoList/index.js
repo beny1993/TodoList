@@ -11,17 +11,20 @@ export default class index extends Component {
             const { id, text, status } = todo;
             return (
               <StyledListItem key={id}>
-                <span>
+                <div>
                   <input type='checkbox' onChange={onDone.bind(this, id)} checked={status} />
                   <input
                     className={status === true ? "done" : "none"}
-                    style={{ border: "0", background: "transparent", outlineL: "none" }}
+                    style={{ border: "0", background: "transparent", outline: "none" }}
                     type='text'
                     value={text}
                     onChange={(e) => onUpdate(id, e.target.value)}
                   />
-                </span>
-                <span style={{ float: "right" }} onClick={onDelete.bind(this, id)}>
+                </div>
+                <span
+                  style={{ float: "right", margin: " -1rem 0rem 0rem 0rem" }}
+                  onClick={onDelete.bind(this, id)}
+                >
                   <i className='fas fa-trash'></i>
                 </span>
               </StyledListItem>
